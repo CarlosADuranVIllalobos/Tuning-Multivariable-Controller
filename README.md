@@ -1,4 +1,4 @@
-v# Tuning-Multivariable-Controller
+# Tuning-Multivariable-Controller
 Comparison of different tuning approaches for multivariable data
 
 The code is divided in 2 folders: MPC(Model Predictive Control) and B2B(Batch-to-Batch Optimisation). The objective of the B2B optimisation is to obtain an optimal feeds starting with suboptimal initial feeds. The objective of the MPC is to reduce variability by modifing an optimal feed. The subfolders, scripts and functions are described below:
