@@ -1,7 +1,7 @@
-# Tuning-Multivariable-Controller
+v# Tuning-Multivariable-Controller
 Comparison of different tuning approaches for multivariable data
 
-The code is divided in 2 folders: MPC(Model Predictive Control) and B2B(Batch-to-Batch Optimisation). The subfolders, scripts and functions are described below:
+The code is divided in 2 folders: MPC(Model Predictive Control) and B2B(Batch-to-Batch Optimisation). The objective of the B2B optimisation is to obtain an optimal feeds starting with suboptimal initial feeds. The objective of the MPC is to reduce variability by modifing an optimal feed. The subfolders, scripts and functions are described below:
 
 - Subfolder Indpensim: Provides the functions to run the simulation.
 
@@ -35,9 +35,5 @@ Scripts and functions that you may need to change to try different approaches:
 - Function fast_controller.m: Optimisation of the MVT using a PLS model and missing data algorithms that is called inside the ODE loop.
 
 - Function orgplsmpc: Organizes data PLS matrices based on the location of the control point to optimise the MVT
-
-
-
-
 
 
