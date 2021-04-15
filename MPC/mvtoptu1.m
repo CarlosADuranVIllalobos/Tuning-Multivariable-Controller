@@ -46,6 +46,7 @@ t_hat=Xp'*beta;
 X2=(t_hat*Pf')';
 D=beta*Pf'*Wf;
 Du=D(np+1:np+nu,:)';
+betau=beta(np+1:np+nu,:);
 %Mising data by Known Data Regression
 %       theta=T'*T;
 %      % Beta=(Ppu*theta*Ppu')\Ppu*theta*Pf'*Wf+Wpu; %PLS
@@ -107,13 +108,16 @@ b=[b;bv];
 
 %Calculate confidence limits for Jt
 sa=diag(var(T));
-T2=sort(diag(T/sa*T'));
-pos=round(.95*length(T2));
-lambdat=1/(T2(pos));
+ev=sort(diag(T/sa*T'));
+CIt = max(bootci(2000,{@median,ev},'alpha',.05));
+lambdat=1/CIt;
 %Calculate confidence limits for Je
-spe=sort(diag(E*E',0));
-pos=round(.95*length(spe));
-lambdae=1/(spe(pos)+2);
+E=(Xtrain-T*Porg');
+ev=sort(diag(E*E'));
+CIe = max(bootci(2000,{@median,ev},'alpha',.05));
+lambdae=1/CIe;
+
+
 %Jt,Je constraints
 hard=struct('Jt',0,'Je',0,'fix',0);
 param=[];
@@ -121,14 +125,12 @@ param.sa=sa;
 param.tp=t_hat;
 param.td=Wu;
 param.Jt=lambdat;
-
-%param.nu=(t_hat)*C';
-%param.vuf=(Wu)*C';
 Xc=[Xp' X2'];
 param.ep=Xc*(eye(length(Xc))-Worg*Porg');
 param.eu=eye(size(Wu*Pu'))-Wu*Pu';
 param.ef=betau*Pf'*(eye(size(Wf*Pf'))-Wf*Pf');
 param.Je=lambdae;
+
 %% Optimisation
 options = optimset('Algorithm','active-set','Display','off');%'active-set'(number of iterations exceeded),'interior-point'(change in x smaller than tol),'sqp'(no feasible solution found),'trust-region-reflective'(does not support Je Jt constraints)
 options.MaxIter=10000;
