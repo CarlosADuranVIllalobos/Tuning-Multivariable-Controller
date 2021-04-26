@@ -121,6 +121,7 @@ lambdae=1/CIe;
 %Jt,Je constraints
 hard=struct('Jt',0,'Je',0,'fix',0);
 param=[];
+param.hard=hard;
 param.sa=sa;
 param.tp=t_hat;
 param.td=Wu;
