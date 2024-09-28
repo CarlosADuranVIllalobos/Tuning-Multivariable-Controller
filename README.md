@@ -1,6 +1,6 @@
 # Tuning-Multivariable-Controller
 Comparison of different tuning approaches for multivariable data using and end-point Model Predictive Controller(MPC) using simulations two biopharmaceutical manufacture: Penicillin and Chinese Hamster Ovary cells production.
-The objective of the end-point MPC is to reduce variability by modifing an optimal feed. This work was used to provide the results provided in the article in review "Tuning of latent variable model predictive controllers for bio-pharmaceutical manufacture.", Journal of Process Control. 
+The objective of the end-point MPC is to reduce variability by modifing an optimal feed. This work was used to provide the results provided in the article in review "Tuning of latent variable model predictive controllers for bio-pharmaceutical manufacture.", under review for the Journal of Process Control. 
 
 
 To run the controller use the file MPC_main.m in each folder. The folders and subfolders are described below:
